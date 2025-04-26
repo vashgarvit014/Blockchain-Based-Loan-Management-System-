@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - LoanChain</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <img src="logo.svg" alt="LoanChain Logo" class="navbar-logo">
+      <span class="gradient-text">LoanChain</span>
+    </div>
+    <div class="navbar-links">
+      <a href="./landing.html">Home</a>
+      <a href="./borrower.html">Borrower</a>
+      <a href="./admin.html">Admin</a>
+      <a href="./loans.html">All Loans</a>
+      <a href="./dashboard.html" class="active">Dashboard</a>
+      <a href="./friends.html">Friends</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="gradient-text animate-fadeIn">Loan Analytics Dashboard</h1>
+    <p class="tagline animate-fadeIn delay-200">Comprehensive insights into your loan portfolio</p>
+
+    <div class="stats-container">
+      <div class="stat-card animate-fadeInLeft delay-300">
+        <div class="stat-label">Total Loans</div>
+        <div class="stat-value animate-count" id="total-loans">0</div>
+        <div>Loan Requests</div>
+      </div>
+      <div class="stat-card animate-fadeInUp delay-400">
+        <div class="stat-label">Total Lent</div>
+        <div class="stat-value animate-count" id="total-lent">0</div>
+        <div>EDU Tokens</div>
+      </div>
+      <div class="stat-card animate-fadeInUp delay-500">
+        <div class="stat-label">Repaid Loans</div>
+        <div class="stat-value animate-count" id="repaid-loans">0</div>
+        <div>Completed</div>
+      </div>
+      <div class="stat-card animate-fadeInRight delay-600">
+        <div class="stat-label">Success Rate</div>
+        <div class="stat-value animate-count" id="success-rate">0%</div>
+        <div>Approval Rate</div>
+      </div>
+    </div>
+
+    <div class="card animate-fadeIn delay-700">
+      <h2>Loan Status Distribution</h2>
+      <div class="chart-container">
+        <div class="pie-chart animate-rotate"></div>
+        <div class="chart-legend">
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: var(--primary-color);"></div>
+            <span>Pending</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: var(--secondary-color);"></div>
+            <span>Approved</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: var(--success);"></div>
+            <span>Repaid</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: var(--warning);"></div>
+            <span>Rejected</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card animate-fadeIn delay-800">
+      <h2>Loan Amount Distribution</h2>
+      <div class="progress-container">
+        <div class="progress-label">
+          <span>Small Loans (0-1 EDU)</span>
+          <span id="small-loans-percent">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="small-loans-bar" style="width: 0%;"></div>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-label">
+          <span>Medium Loans (1-5 EDU)</span>
+          <span id="medium-loans-percent">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="medium-loans-bar" style="width: 0%;"></div>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-label">
+          <span>Large Loans (5+ EDU)</span>
+          <span id="large-loans-percent">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="large-loans-bar" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card animate-fadeIn delay-900">
+      <h2>Recent Loan Activity</h2>
+      <div class="timeline">
+        <div class="timeline-item animate-fadeInLeft delay-300">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date" id="timeline-date-1">Loading...</div>
+            <div class="timeline-title" id="timeline-title-1">Loading...</div>
+            <div class="timeline-description" id="timeline-desc-1">Loading recent loan activity...</div>
+          </div>
+        </div>
+        <div class="timeline-item animate-fadeInRight delay-400">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date" id="timeline-date-2">Loading...</div>
+            <div class="timeline-title" id="timeline-title-2">Loading...</div>
+            <div class="timeline-description" id="timeline-desc-2">Loading recent loan activity...</div>
+          </div>
+        </div>
+        <div class="timeline-item animate-fadeInLeft delay-500">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date" id="timeline-date-3">Loading...</div>
+            <div class="timeline-title" id="timeline-title-3">Loading...</div>
+            <div class="timeline-description" id="timeline-desc-3">Loading recent loan activity...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-2 mt-4 animate-fadeIn delay-1000">
+      <button class="btn-gradient" onclick="refreshDashboard()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        Refresh Dashboard
+      </button>
+      <button class="btn-glass" onclick="exportData()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Export Data
+      </button>
+    </div>
+
+    <div id="alert-box" class="alert"></div>
+  </div>
+
+  <button class="btn-floating animate-pulse" id="help-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+    </svg>
+  </button>
+
+  <script type="module" src="app.js"></script>
+  <script src="dashboard.js"></script>
+  <script>
+    // Add scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add scroll animations
+      const animatedElements = document.querySelectorAll('.animate-fadeIn, .animate-fadeInLeft, .animate-fadeInRight, .animate-fadeInUp, .animate-scaleIn');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

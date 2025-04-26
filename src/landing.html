@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="LoanChain - A professional loan management platform leveraging blockchain technology">
+  <title>LoanChain - Decentralized Loan Management</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="landing-styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <img src="logo.svg" alt="LoanChain Logo" class="navbar-logo">
+      <span class="gradient-text">LoanChain</span>
+    </div>
+    <div class="navbar-links">
+      <a href="./landing.html" class="active">Home</a>
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="./dashboard.html">Dashboard</a>
+      <a href="./friends.html">Friends</a>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <div class="hero-particles" id="particles-js"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1 class="hero-title animate-fadeIn">
+        <span class="gradient-text">Decentralized</span> Loan Management
+      </h1>
+      <p class="hero-subtitle animate-fadeIn delay-200">
+        Empowering the future of finance with transparent, secure, and efficient blockchain-based loans
+      </p>
+      <div class="flex gap-3 animate-fadeIn delay-400">
+        <button class="btn-gradient pulse-effect" onclick="window.location.href='./admin.html'">
+          Get Started
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+        <button class="btn-glass" onclick="window.location.href='#how-it-works'">
+          Learn More
+        </button>
+      </div>
+
+      <div class="hero-stats animate-fadeIn delay-600">
+        <div class="hero-stat">
+          <div class="hero-stat-value animate-count">24</div>
+          <div class="hero-stat-label">Active Loans</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value animate-count">75.5</div>
+          <div class="hero-stat-label">EDU Tokens Lent</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value animate-count">12</div>
+          <div class="hero-stat-label">Repaid Loans</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image animate-float delay-800">
+      <div class="glow-effect"></div>
+      <img src="blockchain-illustration.svg" alt="Blockchain Illustration" width="400" height="300">
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <div class="scroll-text">Scroll Down</div>
+    </div>
+  </section>
+
+  <div class="container">
+    <section id="features" class="mb-4">
+      <div class="section-header">
+        <h2 class="gradient-text animate-fadeIn">Key Features</h2>
+        <p class="tagline animate-fadeIn delay-200">Discover the advantages of our blockchain-powered loan platform</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card modern-card animate-fadeInUp delay-300">
+          <div class="feature-icon-container">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+          </div>
+          <h3 class="feature-title">Secure Transactions</h3>
+          <p class="feature-description">All loan transactions are secured by blockchain technology, ensuring immutability and transparency.</p>
+          <div class="feature-hover-content">
+            <ul class="feature-list">
+              <li>Immutable transaction records</li>
+              <li>Cryptographic security</li>
+              <li>Transparent audit trail</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card modern-card animate-fadeInUp delay-400">
+          <div class="feature-icon-container">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+                <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+              </svg>
+            </div>
+          </div>
+          <h3 class="feature-title">Smart Contracts</h3>
+          <p class="feature-description">Automated loan approval, disbursement, and repayment processes through smart contracts.</p>
+          <div class="feature-hover-content">
+            <ul class="feature-list">
+              <li>Automated execution</li>
+              <li>No intermediaries needed</li>
+              <li>Programmable conditions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card modern-card animate-fadeInUp delay-500">
+          <div class="feature-icon-container">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+              </svg>
+            </div>
+          </div>
+          <h3 class="feature-title">Decentralized</h3>
+          <p class="feature-description">No central authority means lower fees, faster processing, and global accessibility.</p>
+          <div class="feature-hover-content">
+            <ul class="feature-list">
+              <li>Peer-to-peer transactions</li>
+              <li>Global accessibility</li>
+              <li>Reduced processing fees</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="features-grid mt-4">
+        <div class="feature-card modern-card animate-fadeInUp delay-600">
+          <div class="feature-icon-container">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+          </div>
+          <h3 class="feature-title">Fast Processing</h3>
+          <p class="feature-description">Quick loan approvals and disbursements without lengthy paperwork or waiting periods.</p>
+          <div class="feature-hover-content">
+            <ul class="feature-list">
+              <li>Instant approvals</li>
+              <li>Automated verification</li>
+              <li>Real-time disbursements</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card modern-card animate-fadeInUp delay-700">
+          <div class="feature-icon-container">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+          </div>
+          <h3 class="feature-title">Transparent Terms</h3>
+          <p class="feature-description">Clear loan terms and conditions with no hidden fees or surprise charges.</p>
+          <div class="feature-hover-content">
+            <ul class="feature-list">
+              <li>Visible on blockchain</li>
+              <li>No hidden fees</li>
+              <li>Verifiable interest rates</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card modern-card animate-fadeInUp delay-800">
+          <div class="feature-icon-container">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+            </div>
+          </div>
+          <h3 class="feature-title">Advanced Dashboard</h3>
+          <p class="feature-description">Comprehensive analytics and reporting to track your loans and repayments.</p>
+          <div class="feature-hover-content">
+            <ul class="feature-list">
+              <li>Real-time analytics</li>
+              <li>Visual reporting</li>
+              <li>Payment tracking</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="mb-4">
+      <div class="section-header">
+        <h2 class="gradient-text animate-fadeIn">How It Works</h2>
+        <p class="tagline animate-fadeIn delay-200">Simple steps to get started with blockchain-based loans</p>
+      </div>
+
+      <div class="modern-timeline">
+        <div class="timeline-progress"></div>
+
+        <div class="timeline-container">
+          <div class="modern-timeline-item animate-fadeInUp delay-300">
+            <div class="timeline-step">
+              <div class="timeline-step-number">1</div>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="6" width="20" height="12" rx="2" />
+                  <path d="M14 12H18" />
+                  <path d="M16 10V14" />
+                </svg>
+              </div>
+              <h3 class="timeline-title">Connect Your Wallet</h3>
+              <p class="timeline-description">Link your cryptocurrency wallet to our platform to enable secure transactions.</p>
+              <a href="./admin.html" class="timeline-link">Connect Now</a>
+            </div>
+          </div>
+
+          <div class="modern-timeline-item animate-fadeInUp delay-400">
+            <div class="timeline-step">
+              <div class="timeline-step-number">2</div>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="8" y1="12" x2="16" y2="12"></line>
+                  <line x1="12" y1="8" x2="12" y2="16"></line>
+                </svg>
+              </div>
+              <h3 class="timeline-title">Request a Loan</h3>
+              <p class="timeline-description">Specify the amount you need and submit your loan request through our intuitive interface.</p>
+              <a href="./admin.html" class="timeline-link">Request Loan</a>
+            </div>
+          </div>
+
+          <div class="modern-timeline-item animate-fadeInUp delay-500">
+            <div class="timeline-step">
+              <div class="timeline-step-number">3</div>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <h3 class="timeline-title">Get Approved</h3>
+              <p class="timeline-description">Loan requests are reviewed and approved by our decentralized governance system.</p>
+              <a href="./dashboard.html" class="timeline-link">Check Status</a>
+            </div>
+          </div>
+
+          <div class="modern-timeline-item animate-fadeInUp delay-600">
+            <div class="timeline-step">
+              <div class="timeline-step-number">4</div>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+              <h3 class="timeline-title">Receive Funds</h3>
+              <p class="timeline-description">Once approved, funds are automatically transferred to your wallet through smart contracts.</p>
+              <a href="./dashboard.html" class="timeline-link">View Transactions</a>
+            </div>
+          </div>
+
+          <div class="modern-timeline-item animate-fadeInUp delay-700">
+            <div class="timeline-step">
+              <div class="timeline-step-number">5</div>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                </svg>
+              </div>
+              <h3 class="timeline-title">Repay Your Loan</h3>
+              <p class="timeline-description">Make repayments directly through the platform, with all transactions recorded on the blockchain.</p>
+              <a href="./admin.html" class="timeline-link">Make Payment</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="mb-4">
+      <div class="section-header">
+        <h2 class="gradient-text animate-fadeIn">What Our Users Say</h2>
+        <p class="tagline animate-fadeIn delay-200">Hear from people who have transformed their financial future with LoanChain</p>
+      </div>
+
+      <div class="testimonial-slider">
+        <div class="testimonial-track">
+          <div class="testimonial-card animate-scaleIn delay-300">
+            <div class="testimonial-rating">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <div class="testimonial-quote">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6c0 2.667-1.333 4.333-4 5"></path>
+                <path d="M19 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6c0 2.667-1.333 4.333-4 5"></path>
+              </svg>
+            </div>
+            <p class="testimonial-text">LoanChain has revolutionized how I access capital for my business. The process is transparent, fast, and secure. I was able to get funding within 24 hours!</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" style="background: var(--primary-color);">
+                <span>AJ</span>
+              </div>
+              <div class="testimonial-info">
+                <strong>Alex Johnson</strong>
+                <span>Small Business Owner</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card animate-scaleIn delay-400">
+            <div class="testimonial-rating">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <div class="testimonial-quote">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6c0 2.667-1.333 4.333-4 5"></path>
+                <path d="M19 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6c0 2.667-1.333 4.333-4 5"></path>
+              </svg>
+            </div>
+            <p class="testimonial-text">As someone who values privacy and security, LoanChain's blockchain-based approach gives me peace of mind with every transaction. The transparency is unmatched.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" style="background: var(--secondary-color);">
+                <span>SC</span>
+              </div>
+              <div class="testimonial-info">
+                <strong>Sarah Chen</strong>
+                <span>Crypto Enthusiast</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card animate-scaleIn delay-500">
+            <div class="testimonial-rating">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <div class="testimonial-quote">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6c0 2.667-1.333 4.333-4 5"></path>
+                <path d="M19 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6c0 2.667-1.333 4.333-4 5"></path>
+              </svg>
+            </div>
+            <p class="testimonial-text">The dashboard analytics help me track my loans and repayments effortlessly. Best financial platform I've used! The visual reports make it easy to understand my finances.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" style="background: var(--success);">
+                <span>MR</span>
+              </div>
+              <div class="testimonial-info">
+                <strong>Michael Rodriguez</strong>
+                <span>Financial Analyst</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card animate-scaleIn delay-600">
+            <div class="testimonial-rating">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <div class="testimonial-quote">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6c0 2.667-1.333 4.333-4 5"></path>
+                <path d="M19 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6c0 2.667-1.333 4.333-4 5"></path>
+              </svg>
+            </div>
+            <p class="testimonial-text">I've tried several DeFi platforms, but LoanChain stands out with its user-friendly interface and excellent customer support. Highly recommended!</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" style="background: var(--primary-dark);">
+                <span>JD</span>
+              </div>
+              <div class="testimonial-info">
+                <strong>James Davis</strong>
+                <span>Blockchain Developer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-controls">
+          <button class="testimonial-control prev" id="prev-testimonial">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <div class="testimonial-indicators">
+            <span class="testimonial-indicator active"></span>
+            <span class="testimonial-indicator"></span>
+            <span class="testimonial-indicator"></span>
+            <span class="testimonial-indicator"></span>
+          </div>
+          <button class="testimonial-control next" id="next-testimonial">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section mb-4 animate-fadeIn delay-600">
+      <div class="cta-background"></div>
+      <div class="cta-content">
+        <h2 class="gradient-text">Ready to Get Started?</h2>
+        <p class="tagline">Join thousands of users who are already benefiting from blockchain-powered loans</p>
+
+        <div class="cta-stats">
+          <div class="cta-stat">
+            <div class="cta-stat-value">$2.5M+</div>
+            <div class="cta-stat-label">Total Value Locked</div>
+          </div>
+          <div class="cta-stat">
+            <div class="cta-stat-value">5,000+</div>
+            <div class="cta-stat-label">Active Users</div>
+          </div>
+          <div class="cta-stat">
+            <div class="cta-stat-value">99.9%</div>
+            <div class="cta-stat-label">Uptime</div>
+          </div>
+        </div>
+
+        <div class="cta-buttons">
+          <button class="btn-gradient pulse-effect" onclick="window.location.href='./admin.html'">
+            Admin Dashboard
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+          <button class="btn-glass" onclick="window.location.href='./dashboard.html'">
+            View Dashboard
+          </button>
+        </div>
+
+        <div class="cta-partners">
+          <p>Trusted by leading blockchain platforms</p>
+          <div class="partner-logos">
+            <div class="partner-logo">Ethereum</div>
+            <div class="partner-logo">Polygon</div>
+            <div class="partner-logo">Avalanche</div>
+            <div class="partner-logo">Binance</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="modern-footer mt-4 pt-4 animate-fadeIn delay-800">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="logo.svg" alt="LoanChain Logo" class="navbar-logo">
+            <span class="gradient-text">LoanChain</span>
+          </div>
+          <p class="footer-tagline">
+            Empowering the future of finance with blockchain technology
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="#" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-links-column">
+            <h4 class="footer-links-title">Quick Links</h4>
+            <ul class="footer-links-list">
+              <li><a href="#features">Features</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="./dashboard.html">Dashboard</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links-column">
+            <h4 class="footer-links-title">Resources</h4>
+            <ul class="footer-links-list">
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">API Reference</a></li>
+              <li><a href="#">Smart Contracts</a></li>
+              <li><a href="#">Whitepaper</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links-column">
+            <h4 class="footer-links-title">Company</h4>
+            <ul class="footer-links-list">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Press Kit</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links-column">
+            <h4 class="footer-links-title">Legal</h4>
+            <ul class="footer-links-list">
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+              <li><a href="#">Compliance</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          &copy; 2023 LoanChain. All rights reserved.
+        </div>
+        <div class="footer-disclaimer">
+          LoanChain is a decentralized platform. Always do your own research before making financial decisions.
+        </div>
+      </div>
+    </footer>
+
+    <div id="alert-box" class="alert"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize animations
+      initAnimations();
+
+      // Initialize testimonial slider
+      initTestimonialSlider();
+
+      // Initialize counter animations
+      animateCounters();
+
+      // Initialize particle background
+      initParticleBackground();
+
+      // Add smooth scrolling for anchor links
+      initSmoothScrolling();
+    });
+
+    // Initialize animations
+    function initAnimations() {
+      // Add scroll animations
+      const animatedElements = document.querySelectorAll('.animate-fadeIn, .animate-fadeInLeft, .animate-fadeInRight, .animate-fadeInUp, .animate-scaleIn');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      animatedElements.forEach(el => {
+        el.style.opacity = '0';
+
+        if (el.classList.contains('animate-scaleIn')) {
+          el.style.transform = 'scale(0.8)';
+        } else {
+          el.style.transform = 'translateY(20px)';
+        }
+
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+      });
+
+      // Add hover effects to buttons
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button => {
+        button.addEventListener('mouseover', function() {
+          this.classList.add('hover-effect');
+        });
+        button.addEventListener('mouseout', function() {
+          this.classList.remove('hover-effect');
+        });
+      });
+
+      // Add hover effects to feature cards
+      const featureCards = document.querySelectorAll('.feature-card');
+      featureCards.forEach(card => {
+        card.addEventListener('mouseover', function() {
+          this.classList.add('feature-card-hover');
+        });
+        card.addEventListener('mouseout', function() {
+          this.classList.remove('feature-card-hover');
+        });
+      });
+    }
+
+    // Initialize testimonial slider
+    function initTestimonialSlider() {
+      const track = document.querySelector('.testimonial-track');
+      const cards = document.querySelectorAll('.testimonial-card');
+      const indicators = document.querySelectorAll('.testimonial-indicator');
+      const prevBtn = document.getElementById('prev-testimonial');
+      const nextBtn = document.getElementById('next-testimonial');
+
+      if (!track || !cards.length || !indicators.length || !prevBtn || !nextBtn) return;
+
+      let currentIndex = 0;
+      const cardWidth = cards[0].offsetWidth;
+      const cardMargin = 20; // Margin between cards
+      const visibleCards = window.innerWidth < 768 ? 1 : 3;
+
+      // Set initial position
+      updateSliderPosition();
+
+      // Add event listeners
+      prevBtn.addEventListener('click', () => {
+        currentIndex = Math.max(0, currentIndex - 1);
+        updateSliderPosition();
+      });
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex = Math.min(cards.length - visibleCards, currentIndex + 1);
+        updateSliderPosition();
+      });
+
+      // Update slider position
+      function updateSliderPosition() {
+        const translateX = -(currentIndex * (cardWidth + cardMargin));
+        track.style.transform = `translateX(${translateX}px)`;
+
+        // Update indicators
+        indicators.forEach((indicator, index) => {
+          if (index === currentIndex) {
+            indicator.classList.add('active');
+          } else {
+            indicator.classList.remove('active');
+          }
+        });
+
+        // Update button states
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= cards.length - visibleCards;
+      }
+
+      // Add indicator click events
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+          currentIndex = index;
+          updateSliderPosition();
+        });
+      });
+
+      // Auto-advance the slider every 5 seconds
+      setInterval(() => {
+        if (currentIndex < cards.length - visibleCards) {
+          currentIndex++;
+        } else {
+          currentIndex = 0;
+        }
+        updateSliderPosition();
+      }, 5000);
+
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        const newVisibleCards = window.innerWidth < 768 ? 1 : 3;
+        if (newVisibleCards !== visibleCards) {
+          currentIndex = 0;
+          updateSliderPosition();
+        }
+      });
+    }
+
+    // Animate counter values
+    function animateCounters() {
+      const counters = document.querySelectorAll('.animate-count');
+
+      counters.forEach(counter => {
+        const target = parseFloat(counter.textContent);
+        let count = 0;
+        const duration = 2000; // ms
+        const frameDuration = 1000 / 60; // 60fps
+        const totalFrames = Math.round(duration / frameDuration);
+        const increment = target / totalFrames;
+
+        const animate = () => {
+          count += increment;
+          if (count < target) {
+            counter.textContent = Number.isInteger(target) ?
+              Math.floor(count) :
+              count.toFixed(1);
+            requestAnimationFrame(animate);
+          } else {
+            counter.textContent = Number.isInteger(target) ?
+              target :
+              target.toFixed(1);
+          }
+        };
+
+        animate();
+      });
+    }
+
+    // Initialize particle background
+    function initParticleBackground() {
+      const heroSection = document.querySelector('.hero-section');
+      const particlesContainer = document.getElementById('particles-js');
+
+      if (!particlesContainer) return;
+
+      // Create particles
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+
+        // Random position
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+
+        // Random size
+        const size = Math.random() * 5 + 1;
+
+        // Random opacity
+        const opacity = Math.random() * 0.5 + 0.1;
+
+        // Random animation duration
+        const duration = Math.random() * 20 + 10;
+
+        // Set styles
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.opacity = opacity;
+        particle.style.animationDuration = `${duration}s`;
+
+        // Add to container
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Initialize smooth scrolling for anchor links
+    function initSmoothScrolling() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80, // Adjust for navbar height
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    }
+
+    // Show alert function
+    window.showAlert = function(message, type = 'info') {
+      const alertBox = document.getElementById('alert-box');
+      if (!alertBox) return;
+
+      alertBox.innerHTML = message;
+      alertBox.style.display = 'block';
+
+      if (type === 'success') {
+        alertBox.classList.add('success');
+        alertBox.classList.remove('error', 'warning', 'info');
+      } else if (type === 'warning') {
+        alertBox.classList.add('warning');
+        alertBox.classList.remove('error', 'success', 'info');
+      } else if (type === 'info') {
+        alertBox.classList.add('info');
+        alertBox.classList.remove('error', 'success', 'warning');
+      } else {
+        alertBox.classList.add('error');
+        alertBox.classList.remove('success', 'warning', 'info');
+      }
+
+      setTimeout(() => {
+        alertBox.style.display = 'none';
+      }, 5000);
+    };
+  </script>
+</body>
+</html>

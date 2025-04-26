@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Borrower Dashboard - LoanChain</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <img src="logo.svg" alt="LoanChain Logo" class="navbar-logo">
+      <span class="gradient-text">LoanChain</span>
+    </div>
+    <div class="navbar-links">
+      <a href="./landing.html">Home</a>
+      <a href="./borrower.html" class="active">Borrower</a>
+      <a href="./admin.html">Admin</a>
+      <a href="./loans.html">All Loans</a>
+      <a href="./dashboard.html">Dashboard</a>
+      <a href="./friends.html">Friends</a>
+      <a href="https://github.com/vashgarvit014/Blockchain-Based-Loan-Management-System" target="_blank" class="github-link" title="View on GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="gradient-text animate-fadeIn">Borrower Dashboard</h1>
+    <p class="tagline animate-fadeIn delay-200">Request and manage your loans with ease</p>
+
+    <div class="card animate-fadeInUp delay-300">
+      <h2>Account Info</h2>
+      <div class="flex justify-between items-center flex-col md:flex-row">
+        <div class="text-left mb-3">
+          <p class="mb-2">Connected Account: <span id="account" class="status-tag">Not connected</span></p>
+          <p>Admin Address: <span id="admin" class="status-tag">Not connected</span></p>
+        </div>
+        <button id="connect-wallet" onclick="connectWallet()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="20" height="12" rx="2" />
+            <path d="M14 12H18" />
+            <path d="M16 10V14" />
+          </svg>
+          Connect Wallet
+        </button>
+      </div>
+    </div>
+
+    <div class="card animate-fadeInUp delay-400">
+      <h2>Request Loan</h2>
+      <div class="form-group">
+        <label for="loan-amount">Loan Amount (in EDU):</label>
+        <input type="number" id="loan-amount" step="0.01" placeholder="e.g., 1 EDU" />
+        <button onclick="requestLoan()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          Request Loan
+        </button>
+        <div id="request-status-container" class="mt-2 hidden">
+          <p>Status: <span id="request-status" class="status-tag"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card animate-fadeInUp delay-500">
+      <h2>Loan Status</h2>
+      <div class="flex gap-2 justify-center mb-3">
+        <button onclick="checkLoanStatus()" class="btn-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 16v-4M12 8h.01" />
+          </svg>
+          Check My Status
+        </button>
+        <button onclick="checkExistingLoan()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+          </svg>
+          Check Existing Loan
+        </button>
+      </div>
+      <div id="loan-status-container" class="mt-2 hidden">
+        <div class="loans-table-container">
+          <table class="loans-table w-full">
+            <thead>
+              <tr>
+                <th>Loan ID</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="loan-status-table">
+              <tr>
+                <td colspan="4">No loan information available</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card animate-fadeInUp delay-600">
+      <h2>Repay Loan</h2>
+      <div class="form-group">
+        <label for="repay-amount">Repayment Amount (in EDU):</label>
+        <input type="number" id="repay-amount" step="0.01" placeholder="e.g., 1 EDU" />
+        <button onclick="repayLoan()" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6" />
+            <path d="M2 20h.01" />
+          </svg>
+          Repay Loan
+        </button>
+        <div id="repay-status-container" class="mt-2 hidden">
+          <p>Status: <span id="repay-status" class="status-tag"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card animate-fadeInUp delay-700">
+      <h2>Repayment Delay Notification</h2>
+      <div class="form-group">
+        <div class="friends-summary-card">
+          <div class="friends-summary-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span>Friends Database</span>
+          </div>
+          <div class="friends-summary-content">
+            <p>You have <span class="friends-summary-count" id="borrower-friend-count">0</span> friends who will be notified when your loan repayment is delayed.</p>
+            <p class="friends-summary-note">These friends will receive an email notification with details about your delayed loan.</p>
+            <div class="friends-summary-actions">
+              <a href="./friends.html" class="btn-sm btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="8.5" cy="7" r="4"></circle>
+                  <line x1="20" y1="8" x2="20" y2="14"></line>
+                  <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                Add Friends
+              </a>
+              <a href="./friends.html" class="btn-sm btn-outline ml-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Manage Friends
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="delay-status-container" class="mb-3">
+          <p>Checking repayment status...</p>
+        </div>
+        <button id="check-repayment-btn" class="btn-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          Check Repayment Status
+        </button>
+        <button id="notify-friends-btn" class="btn-secondary ml-2" style="display: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+          </svg>
+          Notify Friends
+        </button>
+      </div>
+    </div>
+
+    <div id="alert-box" class="alert"></div>
+  </div>
+
+  <script src="app-standalone.js"></script>
+  <script src="friends.js"></script>
+  <script>
+    // Database-like structure for friends management
+    const FriendsDB = {
+      // Friends collection
+      friends: {
+        // Get all friends
+        getAll: function() {
+          return JSON.parse(localStorage.getItem('loanchain_friends') || '[]');
+        },
+
+        // Get friends by borrower address
+        getByBorrower: function(borrowerAddress) {
+          if (!borrowerAddress) return [];
+          return this.getAll().filter(friend => friend.borrowerAddress === borrowerAddress);
+        }
+      }
+    };
+
+    // Add scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add scroll animations
+      const animatedElements = document.querySelectorAll('.animate-fadeIn, .animate-fadeInLeft, .animate-fadeInRight, .animate-fadeInUp, .animate-scaleIn');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+      });
+
+      // Add hover effects to buttons
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button => {
+        button.addEventListener('mouseover', function() {
+          this.classList.add('animate-pulse');
+        });
+        button.addEventListener('mouseout', function() {
+          this.classList.remove('animate-pulse');
+        });
+      });
+
+      // Check repayment delay and update friend count on page load if wallet is connected
+      window.addEventListener('walletConnected', function() {
+        checkRepaymentDelay();
+        updateBorrowerFriendCount();
+      });
+
+      // If wallet is already connected, check repayment delay and update friend count
+      if (localStorage.getItem('connectedAccount')) {
+        setTimeout(() => {
+          checkRepaymentDelay();
+          updateBorrowerFriendCount();
+        }, 1000); // Slight delay to ensure app.js has initialized
+      }
+
+      // Add event listener for Check Repayment Status button
+      const checkRepaymentBtn = document.getElementById('check-repayment-btn');
+      if (checkRepaymentBtn) {
+        checkRepaymentBtn.addEventListener('click', function() {
+          checkRepaymentDelay();
+        });
+      }
+
+      // Add event listener for Notify Friends button
+      const notifyFriendsBtn = document.getElementById('notify-friends-btn');
+      if (notifyFriendsBtn) {
+        notifyFriendsBtn.addEventListener('click', function() {
+          notifyFriendsAboutDelayedRepayment();
+        });
+      }
+    });
+
+    // Function to update borrower's friend count
+    function updateBorrowerFriendCount() {
+      const friendCountEl = document.getElementById('borrower-friend-count');
+      if (!friendCountEl) return;
+
+      // Get connected account
+      const account = localStorage.getItem('connectedAccount');
+      if (!account) {
+        friendCountEl.textContent = '0';
+        return;
+      }
+
+      // Get friends from localStorage
+      const friends = JSON.parse(localStorage.getItem('loanchain_friends') || '[]');
+
+      // Filter friends to only show those associated with the current borrower
+      const myFriends = friends.filter(friend => friend.borrowerAddress === account);
+
+      // Filter active friends
+      const activeFriends = myFriends.filter(friend => friend.status === 'active' || !friend.status);
+
+      // Update count
+      friendCountEl.textContent = activeFriends.length;
+
+      // Update notification message based on friend count
+      const friendsSummaryNote = document.querySelector('.friends-summary-note');
+      if (friendsSummaryNote) {
+        if (activeFriends.length === 0) {
+          friendsSummaryNote.innerHTML = 'You have no friends added yet. Add friends to notify them when your loan repayment is delayed.';
+          friendsSummaryNote.classList.add('text-warning');
+        } else {
+          friendsSummaryNote.innerHTML = `These ${activeFriends.length} friends will receive an email notification with details about your delayed loan.`;
+          friendsSummaryNote.classList.remove('text-warning');
+        }
+      }
+    }
+
+    // Function to check repayment delay and update UI
+    async function checkRepaymentDelay() {
+      const delayStatusContainer = document.getElementById('delay-status-container');
+      const notifyFriendsBtn = document.getElementById('notify-friends-btn');
+
+      if (!delayStatusContainer) return;
+
+      delayStatusContainer.innerHTML = `
+        <p>
+          <div class="spinner"></div>
+          Checking repayment status...
+        </p>
+      `;
+
+      if (notifyFriendsBtn) {
+        notifyFriendsBtn.style.display = 'none';
+      }
+
+      try {
+        // Check if the checkLoanRepaymentDelay function is available
+        if (typeof window.checkLoanRepaymentDelay !== 'function') {
+          delayStatusContainer.innerHTML = `
+            <p class="text-warning">Repayment delay check functionality not available.</p>
+          `;
+          return;
+        }
+
+        const delayInfo = await window.checkLoanRepaymentDelay();
+
+        if (delayInfo.error) {
+          delayStatusContainer.innerHTML = `
+            <p class="text-error">Error checking repayment status: ${delayInfo.error}</p>
+          `;
+          return;
+        }
+
+        if (!delayInfo.delayed) {
+          delayStatusContainer.innerHTML = `
+            <p class="text-success">Your loan repayment is not delayed.</p>
+          `;
+          return;
+        }
+
+        // Loan repayment is delayed
+        delayStatusContainer.innerHTML = `
+          <div class="alert alert-warning">
+            <p><strong>Your loan repayment is delayed!</strong></p>
+            <p>Loan amount: ${parseFloat(delayInfo.amount).toFixed(2)} EDU</p>
+            <p>Due date: ${delayInfo.dueDate}</p>
+            <p>Days past due: ${delayInfo.daysPastDue}</p>
+            <p>Please repay your loan as soon as possible or notify your friends about the delay.</p>
+          </div>
+        `;
+
+        // Show the notify friends button
+        if (notifyFriendsBtn) {
+          notifyFriendsBtn.style.display = 'inline-flex';
+        }
+
+        // Update friend count
+        updateBorrowerFriendCount();
+
+      } catch (err) {
+        console.error("Error in checkRepaymentDelay:", err);
+        delayStatusContainer.innerHTML = `
+          <p class="text-error">Error checking repayment status: ${err.message}</p>
+        `;
+      }
+    }
+
+    // Function to notify friends about delayed repayment
+    async function notifyFriendsAboutDelayedRepayment() {
+      // Get connected account
+      const account = localStorage.getItem('connectedAccount');
+      if (!account) {
+        showAlert("Please connect your wallet first", "warning");
+        return;
+      }
+
+      // Show loading state
+      const notifyBtn = document.getElementById('notify-friends-btn');
+      if (notifyBtn) {
+        const originalBtnText = notifyBtn.innerHTML;
+        notifyBtn.innerHTML = `<div class="spinner"></div> Notifying...`;
+        notifyBtn.disabled = true;
+
+        try {
+          // Check if repayment is delayed
+          const delayInfo = await checkLoanRepaymentDelay();
+
+          if (!delayInfo.delayed) {
+            showAlert("Your loan repayment is not delayed", "info");
+            notifyBtn.innerHTML = originalBtnText;
+            notifyBtn.disabled = false;
+            return;
+          }
+
+          // Get friends from database
+          const myFriends = FriendsDB.friends.getByBorrower(account);
+
+          if (myFriends.length === 0) {
+            showAlert("You have no friends to notify", "warning");
+            notifyBtn.innerHTML = originalBtnText;
+            notifyBtn.disabled = false;
+            return;
+          }
+
+          // Only notify active friends
+          const activeFriends = myFriends.filter(friend => friend.status === 'active' || !friend.status);
+
+          if (activeFriends.length === 0) {
+            showAlert("You have no active friends to notify", "warning");
+            notifyBtn.innerHTML = originalBtnText;
+            notifyBtn.disabled = false;
+            return;
+          }
+
+          // In a real application, this would send actual notifications
+          // For this demo, we'll just add to notification history
+          const notifications = [];
+
+          activeFriends.forEach(friend => {
+            const message = `Your friend's loan repayment of ${delayInfo.amount} EDU due on ${delayInfo.dueDate} is delayed.`;
+
+            // Create notification
+            const notification = {
+              id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
+              timestamp: Date.now(),
+              borrowerAddress: account,
+              friendId: friend.id,
+              friendName: friend.name,
+              friendEmail: friend.email,
+              message: message,
+              status: 'sent', // In a real app, this would be 'pending' until confirmed
+              loanAmount: delayInfo.amount,
+              dueDate: delayInfo.dueDate
+            };
+
+            notifications.push(notification);
+          });
+
+          // Save notifications to localStorage
+          const existingNotifications = JSON.parse(localStorage.getItem('loanchain_notifications') || '[]');
+          const updatedNotifications = [...existingNotifications, ...notifications];
+          localStorage.setItem('loanchain_notifications', JSON.stringify(updatedNotifications));
+
+          showAlert(`Notifications sent to ${activeFriends.length} friends`, "success");
+        } catch (err) {
+          console.error("Error notifying friends:", err);
+          showAlert(`Failed to notify friends: ${err.message}`, "error");
+        } finally {
+          notifyBtn.innerHTML = originalBtnText;
+          notifyBtn.disabled = false;
+        }
+      }
+    }
+
+    // Helper function to show alerts
+    function showAlert(message, type = 'info') {
+      const alertBox = document.getElementById('alert-box');
+      if (!alertBox) return;
+
+      // Set alert type class
+      let alertClass = 'alert-info';
+      if (type === 'success') alertClass = 'alert-success';
+      if (type === 'warning') alertClass = 'alert-warning';
+      if (type === 'error') alertClass = 'alert-error';
+
+      // Create alert content
+      alertBox.className = `alert ${alertClass} show`;
+      alertBox.innerHTML = message;
+
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        alertBox.className = 'alert';
+      }, 5000);
+    }
+  </script>
+</body>
+</html>

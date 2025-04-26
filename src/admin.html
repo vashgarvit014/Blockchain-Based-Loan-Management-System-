@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - LoanChain</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <img src="logo.svg" alt="LoanChain Logo" class="navbar-logo">
+      <span class="gradient-text">LoanChain</span>
+    </div>
+    <div class="navbar-links">
+      <a href="./landing.html">Home</a>
+      <a href="./borrower.html">Borrower</a>
+      <a href="./admin.html" class="active">Admin</a>
+      <a href="./loans.html">All Loans</a>
+      <a href="./dashboard.html">Dashboard</a>
+      <a href="./friends.html">Friends</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="gradient-text animate-fadeIn">Admin Dashboard</h1>
+    <p class="tagline typing-effect animate-fadeIn delay-200">Power, control, and transparency—on the blockchain</p>
+
+    <div class="stats-container">
+      <div class="stat-card animate-fadeInLeft delay-300">
+        <div class="stat-label">Total Loans</div>
+        <div class="stat-value animate-count" id="admin-total-loans">24</div>
+        <div>Loan Requests</div>
+      </div>
+      <div class="stat-card animate-fadeInUp delay-400">
+        <div class="stat-label">Total Lent</div>
+        <div class="stat-value animate-count" id="admin-total-lent">75.5</div>
+        <div>EDU Tokens</div>
+      </div>
+      <div class="stat-card animate-fadeInRight delay-500">
+        <div class="stat-label">Contract Balance</div>
+        <div class="stat-value animate-count" id="admin-contract-balance">120.25</div>
+        <div>EDU Tokens</div>
+      </div>
+    </div>
+
+    <div class="card animate-fadeIn delay-600">
+      <h2>Account Details</h2>
+      <div class="flex justify-between items-center flex-col md:flex-row">
+        <div class="text-left mb-3">
+          <p class="mb-2">Connected Account: <span id="account" class="status-tag">Not connected</span></p>
+          <p>Admin Address: <span id="admin" class="status-tag">Not connected</span></p>
+        </div>
+        <button id="connect-wallet" onclick="connectWallet()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="20" height="12" rx="2" />
+            <path d="M14 12H18" />
+            <path d="M16 10V14" />
+          </svg>
+          Connect Wallet
+        </button>
+      </div>
+    </div>
+
+    <div class="card admin-section animate-fadeInLeft delay-700">
+      <h2>Fund Contract</h2>
+      <div class="form-group">
+        <label for="fund-amount">Amount to Fund (in EDU):</label>
+        <input type="number" id="fund-amount" step="0.01" placeholder="e.g., 1 EDU" />
+        <button onclick="fundContract()" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+          Fund Contract
+        </button>
+        <div id="fund-status-container" class="mt-2 hidden">
+          <p>Status: <span id="fund-status" class="status-tag"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card admin-section animate-fadeInUp delay-800">
+      <h2>Approve Loan</h2>
+      <div class="form-group">
+        <label for="loan-id">Loan ID:</label>
+        <input type="number" id="loan-id" placeholder="e.g., 0" />
+        <button onclick="approveLoan()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"></path>
+          </svg>
+          Approve Loan
+        </button>
+        <div id="approve-status-container" class="mt-2 hidden">
+          <p>Status: <span id="approve-status" class="status-tag"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card admin-section animate-fadeInRight delay-900">
+      <h2>Withdraw Funds</h2>
+      <div class="form-group">
+        <label for="withdraw-amount">Amount to Withdraw (in EDU):</label>
+        <input type="number" id="withdraw-amount" step="0.01" placeholder="e.g., 1 EDU" />
+        <button onclick="withdrawFunds()" class="btn-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Withdraw Funds
+        </button>
+        <div id="withdraw-status-container" class="mt-2 hidden">
+          <p>Status: <span id="withdraw-status" class="status-tag"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="alert-box" class="alert"></div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

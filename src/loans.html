@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Loans - LoanChain</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <img src="logo.svg" alt="LoanChain Logo" class="navbar-logo">
+      <span class="gradient-text">LoanChain</span>
+    </div>
+    <div class="navbar-links">
+      <a href="./landing.html">Home</a>
+      <a href="./borrower.html">Borrower</a>
+      <a href="./admin.html">Admin</a>
+      <a href="./loans.html" class="active">All Loans</a>
+      <a href="./dashboard.html">Dashboard</a>
+      <a href="./friends.html">Friends</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="gradient-text animate-fadeIn">All Loan Requests</h1>
+    <p class="tagline animate-fadeIn delay-200">View and track all loan requests on the platform</p>
+
+    <div class="card animate-fadeInUp delay-300">
+      <h2>Account Details</h2>
+      <div class="flex justify-between items-center flex-col md:flex-row">
+        <div class="text-left mb-3">
+          <p class="mb-2">Connected Account: <span id="account" class="status-tag">Not connected</span></p>
+          <p>Admin Address: <span id="admin" class="status-tag">Not connected</span></p>
+        </div>
+        <button id="connect-wallet" onclick="connectWallet()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="20" height="12" rx="2" />
+            <path d="M14 12H18" />
+            <path d="M16 10V14" />
+          </svg>
+          Connect Wallet
+        </button>
+      </div>
+    </div>
+
+    <div class="card animate-fadeInUp delay-400">
+      <h2>Loan Request List</h2>
+      <button onclick="getAllLoans()" class="mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        Refresh Loans
+      </button>
+
+      <div id="loans-table-container" class="loans-table-container">
+        <table class="loans-table w-full">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Borrower</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="all-loans-table">
+            <tr>
+              <td colspan="5" class="text-center">Click "Refresh Loans" to see the list of loan requests.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="all-loans" class="hidden">
+        <!-- This will be replaced by the table above -->
+      </div>
+    </div>
+
+    <div id="alert-box" class="alert"></div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+  <script>
+    // Add scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add scroll animations
+      const animatedElements = document.querySelectorAll('.animate-fadeIn, .animate-fadeInLeft, .animate-fadeInRight, .animate-fadeInUp, .animate-scaleIn');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+      });
+
+      // Add hover effects to buttons
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button => {
+        button.addEventListener('mouseover', function() {
+          this.classList.add('animate-pulse');
+        });
+        button.addEventListener('mouseout', function() {
+          this.classList.remove('animate-pulse');
+        });
+      });
+
+      // Add sample data to the loans table
+      setTimeout(() => {
+        populateSampleLoans();
+      }, 1000);
+    });
+
+    // Populate sample loan data
+    function populateSampleLoans() {
+      const sampleLoans = [
+        { id: 0, borrower: '0x1234...5678', amount: '5.0 EDU', status: 'Approved', date: new Date().toLocaleString() },
+        { id: 1, borrower: '0xabcd...ef01', amount: '2.5 EDU', status: 'Repaid', date: new Date(Date.now() - 86400000).toLocaleString() },
+        { id: 2, borrower: '0x9876...5432', amount: '1.0 EDU', status: 'Pending', date: new Date(Date.now() - 172800000).toLocaleString() },
+        { id: 3, borrower: '0x2468...1357', amount: '3.5 EDU', status: 'Approved', date: new Date(Date.now() - 259200000).toLocaleString() },
+        { id: 4, borrower: '0x1357...2468', amount: '7.5 EDU', status: 'Pending', date: new Date(Date.now() - 345600000).toLocaleString() }
+      ];
+
+      const tableBody = document.getElementById('all-loans-table');
+      if (!tableBody) return;
+
+      tableBody.innerHTML = '';
+
+      sampleLoans.forEach(loan => {
+        // Determine status class
+        let statusClass = 'status-pending';
+        if (loan.status === 'Approved') statusClass = 'status-approved';
+        if (loan.status === 'Repaid') statusClass = 'status-repaid';
+        if (loan.status === 'Rejected') statusClass = 'status-rejected';
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${loan.id}</td>
+          <td>${loan.borrower}</td>
+          <td>${loan.amount}</td>
+          <td><span class="status-tag ${statusClass}">${loan.status}</span></td>
+          <td>${loan.date}</td>
+        `;
+
+        // Add animation to the row
+        row.style.opacity = '0';
+        row.style.transform = 'translateY(20px)';
+        row.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+        tableBody.appendChild(row);
+
+        // Trigger animation after a small delay based on index
+        setTimeout(() => {
+          row.style.opacity = '1';
+          row.style.transform = 'translateY(0)';
+        }, 100 * (tableBody.children.length));
+      });
+    }
+  </script>
+</body>
+</html>
