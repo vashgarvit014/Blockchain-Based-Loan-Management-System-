@@ -1,0 +1,17 @@
+{
+  "name": "simple-loan-management",
+  "version": "1.0.0",
+  "description": "A simple loan management DApp using Web3.js and Solidity",
+  "scripts": {
+    "start": "parcel src/landing.html src/index.html src/borrower.html src/admin.html src/loans.html src/dashboard.html --open",
+    "build": "parcel build src/landing.html src/index.html src/borrower.html src/admin.html src/loans.html src/dashboard.html"
+  },
+  "dependencies": {
+    "web3": "^1.10.4"
+  },
+  "devDependencies": {
+    "parcel": "^2.14.4"
+  },
+  "author": "",
+  "license": "MIT"
+}
